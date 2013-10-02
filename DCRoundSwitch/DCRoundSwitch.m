@@ -536,7 +536,9 @@
     if (flatKnob != shouldShowFlatKnob) {
         flatKnob = shouldShowFlatKnob;
         self.knobLayer.flatKnob = shouldShowFlatKnob;
+        self.toggleLayer.flatKnob = shouldShowFlatKnob;
         [self.knobLayer setNeedsDisplay];
+        [self.toggleLayer setNeedsDisplay];
     }
 }
 

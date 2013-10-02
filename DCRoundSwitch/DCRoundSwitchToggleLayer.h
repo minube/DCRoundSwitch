@@ -25,6 +25,7 @@
 @property (nonatomic, readonly) UIFont *labelFont;
 @property (nonatomic) BOOL drawOnTint;
 @property (nonatomic) BOOL clip;
+@property (nonatomic) BOOL flatKnob;
 
 - (id)initWithOnString:(NSString *)anOnString offString:(NSString *)anOffString onTintColor:(UIColor *)anOnTintColor;
 - (id)initWithOnString:(NSString *)anOnString offString:(NSString *)anOffString onTintColor:(UIColor *)anOnTintColor offTintColor:(UIColor *)anOffColor;

@@ -19,7 +19,7 @@ CGGradientRef CreateGradientRefWithColors(CGColorSpaceRef colorSpace, CGColorRef
 - (void)drawInContext:(CGContextRef)context
 {
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
-	CGFloat inset = 2;
+	CGFloat inset = self.flatKnob ? 1 : 2;
     CGRect knobRect = CGRectInset(self.bounds, inset, inset);
 	CGFloat knobRadius = self.bounds.size.height - inset;
 

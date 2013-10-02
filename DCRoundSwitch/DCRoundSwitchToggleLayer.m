@@ -14,7 +14,7 @@
 @implementation DCRoundSwitchToggleLayer
 @synthesize onString, offString, onTintColor, offTintColor, onStringTintColor, onStringShadowTintColor, offStringTintColor, offStringShadowTintColor;
 @synthesize drawOnTint;
-@synthesize clip;
+@synthesize clip, flatKnob;
 @synthesize labelFont;
 
 - (void)dealloc
@@ -58,7 +58,15 @@
 {
 	CGFloat knobRadius = self.bounds.size.height - 2.0;
 	CGFloat knobCenter = self.bounds.size.width / 2.0;
-	CGRect knobRect = CGRectMake(knobCenter - knobRadius / 2.0, 1.0, knobRadius, knobRadius);
+    if (!self.flatKnob) {
+        CGRect knobRect = CGRectMake(knobCenter - knobRadius / 2.0, 1.0, knobRadius, knobRadius);
+        // knob shadow
+        CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 1.5, [UIColor colorWithWhite:0.2 alpha:1.0].CGColor);
+        CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:0.42 alpha:1.0].CGColor);
+        CGContextSetLineWidth(context, 1.0);
+        CGContextStrokeEllipseInRect(context, knobRect);
+        CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 0, NULL);
+    }
 
 	if (self.clip)
 	{
@@ -81,13 +89,6 @@
     }
 	CGContextSetFillColorWithColor(context, offColor.CGColor);
 	CGContextFillRect(context, CGRectMake(knobCenter, 0, self.bounds.size.width - knobCenter, self.bounds.size.height));
-
-	// knob shadow
-	CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 1.5, [UIColor colorWithWhite:0.2 alpha:1.0].CGColor);
-	CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:0.42 alpha:1.0].CGColor);
-	CGContextSetLineWidth(context, 1.0);
-	CGContextStrokeEllipseInRect(context, knobRect);
-	CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 0, NULL);
 	
 
 	// strings
