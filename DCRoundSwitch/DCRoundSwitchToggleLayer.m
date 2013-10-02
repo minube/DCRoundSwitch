@@ -12,7 +12,7 @@
 #import "DCRoundSwitchToggleLayer.h"
 
 @implementation DCRoundSwitchToggleLayer
-@synthesize onString, offString, onTintColor, offTintColor;
+@synthesize onString, offString, onTintColor, offTintColor, onStringTintColor, onStringShadowTintColor, offStringTintColor, offStringShadowTintColor;
 @synthesize drawOnTint;
 @synthesize clip;
 @synthesize labelFont;
@@ -23,6 +23,10 @@
 	[offString release];
 	[onTintColor release];
     [offTintColor release];
+    [onStringTintColor release];
+    [onStringShadowTintColor release];
+    [offStringTintColor release];
+    [offStringShadowTintColor release];
 
 	[super dealloc];
 }
@@ -94,17 +98,33 @@
 	// 'ON' state label (self.onString)
 	CGSize onTextSize = [self.onString sizeWithFont:self.labelFont];
 	CGPoint onTextPoint = CGPointMake((textSpaceWidth - onTextSize.width) / 2.0 + knobRadius * .15, floorf((self.bounds.size.height - onTextSize.height) / 2.0) + 1.0);
-	[[UIColor colorWithWhite:0.45 alpha:1.0] set]; // .2 & .4
-	[self.onString drawAtPoint:CGPointMake(onTextPoint.x, onTextPoint.y - 1.0) withFont:self.labelFont];
-	[[UIColor whiteColor] set];
+	if (self.onStringShadowTintColor) {
+        [self.onStringShadowTintColor set];
+    } else {
+        [[UIColor colorWithWhite:0.45 alpha:1.0] set]; // .2 & .4
+    }
+	[self.onString drawAtPoint:CGPointMake(onTextPoint.x + 1.0, onTextPoint.y) withFont:self.labelFont];
+    if (self.onStringTintColor) {
+        [self.onStringTintColor set];
+    } else {
+        [[UIColor whiteColor] set];
+    }
 	[self.onString drawAtPoint:onTextPoint withFont:self.labelFont];
 
 	// 'OFF' state label (self.offString)
 	CGSize offTextSize = [self.offString sizeWithFont:self.labelFont];
 	CGPoint offTextPoint = CGPointMake(textSpaceWidth + (textSpaceWidth - offTextSize.width) / 2.0 + knobRadius * .86, floorf((self.bounds.size.height - offTextSize.height) / 2.0) + 1.0);
-	[[UIColor whiteColor] set];
-	[self.offString drawAtPoint:CGPointMake(offTextPoint.x, offTextPoint.y + 1.0) withFont:self.labelFont];
-	[[UIColor colorWithWhite:0.52 alpha:1.0] set];
+	if (self.offStringShadowTintColor) {
+        [self.offStringShadowTintColor set];
+    } else {
+        [[UIColor whiteColor] set];
+    }
+	[self.offString drawAtPoint:CGPointMake(offTextPoint.x + 1.0, offTextPoint.y) withFont:self.labelFont];
+	if (self.offStringTintColor) {
+        [self.offStringTintColor set];
+    } else {
+        [[UIColor colorWithWhite:0.52 alpha:1.0] set];
+    }
 	[self.offString drawAtPoint:offTextPoint withFont:self.labelFont];
 
 	UIGraphicsPopContext();

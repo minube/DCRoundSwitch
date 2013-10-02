@@ -32,7 +32,7 @@
 @implementation DCRoundSwitch
 @synthesize outlineLayer, toggleLayer, knobLayer, clipLayer, ignoreTap;
 @synthesize on, onText, offText;
-@synthesize onTintColor, offTintColor;
+@synthesize onTintColor, offTintColor, onStringTintColor, onStringShadowTintColor, offStringTintColor, offStringShadowTintColor;
 @synthesize showGlossOutline;
 
 #pragma mark -
@@ -49,6 +49,10 @@
     [offTintColor release];
 	[onText release];
 	[offText release];
+    [onStringTintColor release];
+    [onStringShadowTintColor release];
+    [offStringTintColor release];
+    [offStringShadowTintColor release];
 
 	[super dealloc];
 }
@@ -429,6 +433,46 @@
 		self.toggleLayer.offTintColor = anOffTintColor;
 		[self.toggleLayer setNeedsDisplay];
 	}
+}
+
+- (void)setOnStringTintColor:(UIColor *)anOnStringTintColor
+{
+    if (onStringTintColor != anOnStringTintColor) {
+        [onStringTintColor release];
+        onStringTintColor = [anOnStringTintColor retain];
+        self.toggleLayer.onStringTintColor = anOnStringTintColor;
+        [self.toggleLayer setNeedsDisplay];
+    }
+}
+
+- (void)setOnStringShadowTintColor:(UIColor *)anOnStringShadowTintColor
+{
+    if (onStringShadowTintColor != anOnStringShadowTintColor) {
+        [onStringShadowTintColor release];
+        onStringShadowTintColor = [anOnStringShadowTintColor retain];
+        self.toggleLayer.onStringShadowTintColor = anOnStringShadowTintColor;
+        [self.toggleLayer setNeedsDisplay];
+    }
+}
+
+- (void)setOffStringTintColor:(UIColor *)anOffStringTintColor
+{
+    if (offStringTintColor != anOffStringTintColor) {
+        [offStringTintColor release];
+        offStringTintColor = [anOffStringTintColor retain];
+        self.toggleLayer.offStringTintColor = anOffStringTintColor;
+        [self.toggleLayer setNeedsDisplay];
+    }
+}
+
+- (void)setOffStringShadowTintColor:(UIColor *)anOffStringShadowTintColor
+{
+    if (offStringShadowTintColor != anOffStringShadowTintColor) {
+        [offStringShadowTintColor release];
+        offStringShadowTintColor = [anOffStringShadowTintColor retain];
+        self.toggleLayer.offStringShadowTintColor = anOffStringShadowTintColor;
+        [self.toggleLayer setNeedsDisplay];
+    }
 }
 
 - (void)layoutSubviews;
