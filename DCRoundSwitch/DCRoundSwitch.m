@@ -32,7 +32,8 @@
 @implementation DCRoundSwitch
 @synthesize outlineLayer, toggleLayer, knobLayer, clipLayer, ignoreTap;
 @synthesize on, onText, offText;
-@synthesize onTintColor;
+@synthesize onTintColor, offTintColor;
+@synthesize showGlossOutline;
 
 #pragma mark -
 #pragma mark Init & Memory Managment
@@ -45,6 +46,7 @@
 	[clipLayer release];
 
 	[onTintColor release];
+    [offTintColor release];
 	[onText release];
 	[offText release];
 
@@ -137,6 +139,7 @@
 
 	self.outlineLayer = [[[self class] outlineLayerClass] layer];
 	[self.toggleLayer addSublayer:self.outlineLayer];
+    self.showGlossOutline = YES;
 	[self.outlineLayer setNeedsDisplay];
 
 	self.knobLayer = [[[self class] knobLayerClass] layer];
@@ -417,6 +420,17 @@
 	}
 }
 
+- (void)setOffTintColor:(UIColor *)anOffTintColor
+{
+    if (anOffTintColor != offTintColor)
+	{
+		[offTintColor release];
+		offTintColor = [anOffTintColor retain];
+		self.toggleLayer.offTintColor = anOffTintColor;
+		[self.toggleLayer setNeedsDisplay];
+	}
+}
+
 - (void)layoutSubviews;
 {
 	CGFloat knobRadius = self.bounds.size.height + 2.0;
@@ -463,6 +477,14 @@
 		self.toggleLayer.offString = offText;
 		[self.toggleLayer setNeedsDisplay];
 	}
+}
+
+- (void)setShowGlossOutline:(BOOL)shouldShowGlossOutline
+{
+    if (showGlossOutline != shouldShowGlossOutline) {
+        showGlossOutline = shouldShowGlossOutline;
+        self.outlineLayer.hidden = !showGlossOutline;
+    }
 }
 
 @end
