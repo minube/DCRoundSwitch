@@ -28,6 +28,7 @@
 @property (nonatomic, retain) UIColor *offStringTintColor;			// default: grey (matches normal UISwitch)
 @property (nonatomic, retain) UIColor *offStringShadowTintColor;	// default: white (matches normal UISwitch)
 @property (nonatomic, assign) BOOL showGlossOutline;				// default: YES
+@property (nonatomic, assign) BOOL flatKnob;						// default: NO
 
 + (Class)knobLayerClass;
 + (Class)outlineLayerClass;

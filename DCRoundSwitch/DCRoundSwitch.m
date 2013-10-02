@@ -33,7 +33,7 @@
 @synthesize outlineLayer, toggleLayer, knobLayer, clipLayer, ignoreTap;
 @synthesize on, onText, offText;
 @synthesize onTintColor, offTintColor, onStringTintColor, onStringShadowTintColor, offStringTintColor, offStringShadowTintColor;
-@synthesize showGlossOutline;
+@synthesize showGlossOutline, flatKnob;
 
 #pragma mark -
 #pragma mark Init & Memory Managment
@@ -528,6 +528,15 @@
     if (showGlossOutline != shouldShowGlossOutline) {
         showGlossOutline = shouldShowGlossOutline;
         self.outlineLayer.hidden = !showGlossOutline;
+    }
+}
+
+- (void)setFlatKnob:(BOOL)shouldShowFlatKnob
+{
+    if (flatKnob != shouldShowFlatKnob) {
+        flatKnob = shouldShowFlatKnob;
+        self.knobLayer.flatKnob = shouldShowFlatKnob;
+        [self.knobLayer setNeedsDisplay];
     }
 }
 
