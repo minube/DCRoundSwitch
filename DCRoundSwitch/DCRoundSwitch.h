@@ -29,6 +29,7 @@
 @property (nonatomic, retain) UIColor *offStringShadowTintColor;	// default: white (matches normal UISwitch)
 @property (nonatomic, assign) BOOL showGlossOutline;				// default: YES
 @property (nonatomic, assign) BOOL flatKnob;						// default: NO
+@property (nonatomic, retain) UIFont *toggleFont;
 
 + (Class)knobLayerClass;
 + (Class)outlineLayerClass;

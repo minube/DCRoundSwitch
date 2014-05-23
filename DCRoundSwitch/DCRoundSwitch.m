@@ -475,6 +475,16 @@
     }
 }
 
+- (void)setToggleFont:(UIFont *)toggleFont
+{
+    if (_toggleFont != toggleFont) {
+        [_toggleFont release];
+        _toggleFont = [toggleFont retain];
+        self.toggleLayer.labelFont = _toggleFont;
+        [self.toggleLayer setNeedsDisplay];
+    }
+}
+
 - (void)layoutSubviews;
 {
 	CGFloat knobRadius = self.bounds.size.height + 2.0;

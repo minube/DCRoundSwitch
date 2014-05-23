@@ -51,6 +51,9 @@
 
 - (UIFont *)labelFont
 {
+    if (labelFont) {
+        return labelFont;
+    }
 	return [UIFont boldSystemFontOfSize:ceilf(self.bounds.size.height * .6)];
 }
 

@@ -22,7 +22,7 @@
 @property (nonatomic, retain) UIColor *onStringShadowTintColor;
 @property (nonatomic, retain) UIColor *offStringTintColor;
 @property (nonatomic, retain) UIColor *offStringShadowTintColor;
-@property (nonatomic, readonly) UIFont *labelFont;
+@property (nonatomic, retain) UIFont *labelFont;
 @property (nonatomic) BOOL drawOnTint;
 @property (nonatomic) BOOL clip;
 @property (nonatomic) BOOL flatKnob;
