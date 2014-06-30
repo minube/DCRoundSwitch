@@ -100,36 +100,37 @@
 	UIGraphicsPushContext(context);
 
 	// 'ON' state label (self.onString)
-	CGSize onTextSize = [self.onString sizeWithFont:self.labelFont];
+	CGSize onTextSize = [self.onString sizeWithAttributes:@{NSFontAttributeName:self.labelFont}];
 	CGPoint onTextPoint = CGPointMake((textSpaceWidth - onTextSize.width) / 2.0 + knobRadius * .15, floorf((self.bounds.size.height - onTextSize.height) / 2.0) + 1.0);
 	if (self.onStringShadowTintColor) {
         [self.onStringShadowTintColor set];
     } else {
         [[UIColor colorWithWhite:0.45 alpha:1.0] set]; // .2 & .4
     }
-	[self.onString drawAtPoint:CGPointMake(onTextPoint.x + 1.0, onTextPoint.y) withFont:self.labelFont];
+    [self.onString drawAtPoint:CGPointMake(onTextPoint.x + 1.0, onTextPoint.y) withAttributes:@{NSFontAttributeName:self.labelFont}];
     if (self.onStringTintColor) {
         [self.onStringTintColor set];
     } else {
         [[UIColor whiteColor] set];
     }
-	[self.onString drawAtPoint:onTextPoint withFont:self.labelFont];
+    [self.onString drawAtPoint:onTextPoint withAttributes:@{NSFontAttributeName:self.labelFont}];
 
 	// 'OFF' state label (self.offString)
-	CGSize offTextSize = [self.offString sizeWithFont:self.labelFont];
+	CGSize offTextSize = [self.offString sizeWithAttributes:@{NSFontAttributeName:self.labelFont}];
 	CGPoint offTextPoint = CGPointMake(textSpaceWidth + (textSpaceWidth - offTextSize.width) / 2.0 + knobRadius * .86, floorf((self.bounds.size.height - offTextSize.height) / 2.0) + 1.0);
 	if (self.offStringShadowTintColor) {
         [self.offStringShadowTintColor set];
     } else {
         [[UIColor whiteColor] set];
     }
-	[self.offString drawAtPoint:CGPointMake(offTextPoint.x + 1.0, offTextPoint.y) withFont:self.labelFont];
+    
+	[self.offString drawAtPoint:CGPointMake(offTextPoint.x + 1.0, offTextPoint.y) withAttributes:@{NSFontAttributeName:self.labelFont}];
 	if (self.offStringTintColor) {
         [self.offStringTintColor set];
     } else {
         [[UIColor colorWithWhite:0.52 alpha:1.0] set];
     }
-	[self.offString drawAtPoint:offTextPoint withFont:self.labelFont];
+	[self.offString drawAtPoint:offTextPoint withAttributes:@{NSFontAttributeName:self.labelFont}];
 
 	UIGraphicsPopContext();
 }
